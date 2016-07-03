@@ -18,13 +18,21 @@ export default class Menu {
 			this._onMenuItemClick(event);
 		}
 
+		if (event.target.classList.contains('menu__item-remove')) {
+			isItemClick = true;
+			this._removeItem(event);
+		}
+
 		if (!isItemClick) {
 			this.el.classList.toggle('menu_open');
 		}
 	}
 
 	_onMenuItemClick(event) {
-		console.log(event.target);
+		console.dir(event.target);
 	}
 
+	_removeItem(event) {
+		event.target.parentNode.remove();
+	}
 }

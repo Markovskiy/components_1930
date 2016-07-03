@@ -1,20 +1,65 @@
-.menu {
-	padding: 20px;
-	font-size: 24px;
-	background-color: #ececec;
+.menu__label {
+	background: url(/public/images/icon/ic_menu_black_24px.svg) 0 0 no-repeat;
+	left: 4px;
+}
+
+.menu__show {
+	background: url(/public/images/icon/ic_keyboard_arrow_down_black_24px.svg) 0 0 no-repeat;
+	right: 4px;
+}
+
+.menu__http {
+	background: url(/public/images/icon/ic_http_black_24px.svg) 0 0 no-repeat;
+	left: 40px;
+}
+
+.menu__item-remove {
+	background: url(/public/images/icon/ic_delete_black_24px.svg) 0 0 no-repeat;
+	right: 4px;
+	display: none;
+	cursor: pointer;
+}
+
+.menu__show:focus {
+	outline: none;
 }
 
 .menu_open .menu__list {
 	display: block;
 }
 
-.menu__item {
-	cursor: pointer;
-	margin-bottom: 10px
+.menu_open .menu__show {
+	transform: rotate(180deg);
+}
+
+.menu__list {
+	padding: 8px 0;
 }
 
 .menu__title {
-	font-weight: 700;
+	-webkit-user-select: none;
+}
+
+.menu__title, .menu__item {
+	padding: 16px 16px 16px 72px;
+	position: relative;
+	line-height: 16px;
+	cursor: pointer;
+	background-color: #fff;
+	border-radius: 2px 2px 0 0;
+	transition: background-color .3s;
+}
+
+.menu__title:hover, .menu__item:hover {
+	background-color: #e7e7e7;
+}
+
+.menu__item {
+	padding: 16px 16px 16px 108px;
+}
+
+.menu__item:hover .menu__item-remove {
+	display: block;
 }
 
 .menu__list {

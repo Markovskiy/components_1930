@@ -8,6 +8,7 @@
   },
   "scripts": {
     "lint": "eslint *.js src/js; exit 0",
+    "start": "static .",
     "build": "webpack",
     "dev": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
