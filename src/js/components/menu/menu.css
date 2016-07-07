@@ -13,6 +13,11 @@
 	left: 40px;
 }
 
+.menu__https {
+	background: url(/public/images/icon/ic_https_black_24px.svg) 0 0 no-repeat;
+	left: 40px;
+}
+
 .menu__item-remove {
 	background: url(/public/images/icon/ic_delete_black_24px.svg) 0 0 no-repeat;
 	right: 4px;

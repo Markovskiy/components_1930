@@ -6,8 +6,14 @@ module.exports = {
 		filename: '[name].min.js',
 		path: 'public/js/',
 	},
+	devtool: 'inline-module-source-map',
+	cache: true,
 	module: {
 		loaders: [
+			{
+				test: /\.jade$/,
+				loader: 'jade',
+			},
 			{
 				test: /\.css$/,
 				loader: 'style!css',
@@ -15,14 +21,10 @@ module.exports = {
 			{
 				test: /\.js$/,
 				loader: 'babel',
+				exclude: [/node_modules/],
 				query: {
 					presets: ['es2015'],
 				},
-			},
-			{
-				test: /\.(js)$/,
-				exclude: [/node_modules/],
-				loader: 'babel?cacheDirectory=true',
 			},
 		],
 	},

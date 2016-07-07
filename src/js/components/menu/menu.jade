@@ -1,0 +1,14 @@
+.menu__title(data-action="toggle")
+	i.menu__label.icon
+	=title
+	i.menu__show.icon
+
+.menu__list
+	each item, index in items
+		.menu__item(data-action="pick", data-index=index)
+			if item.href.indexOf('https') !== -1
+				i.icon.menu__https
+			else
+				i.icon.menu__http
+			=item.anchor
+			i.menu__item-remove.icon(data-action="remove")
