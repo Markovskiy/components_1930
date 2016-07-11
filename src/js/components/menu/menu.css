@@ -41,10 +41,6 @@
 	padding: 8px 0;
 }
 
-.menu__title {
-	-webkit-user-select: none;
-}
-
 .menu__title, .menu__item {
 	padding: 16px 16px 16px 72px;
 	position: relative;
@@ -53,6 +49,11 @@
 	background-color: #fff;
 	border-radius: 2px 2px 0 0;
 	transition: background-color .3s;
+}
+
+.menu__title {
+	-webkit-user-select: none;
+	padding: 16px 35px 16px 72px;
 }
 
 .menu__title:hover, .menu__item:hover {

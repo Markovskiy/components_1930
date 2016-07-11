@@ -36,9 +36,24 @@ const form = new Form({
 		hint: {
 			anchor: 'Название',
 			href: 'Ссылка',
-		}
+		},
+	},
+});
+
+menu.render();
+form.render();
+
+menu.el.addEventListener('toggle', event => {
+	if (event.detail.open) {
+		form.hideAddBlock();
 	}
 });
 
-console.log(menu);
-console.log(form);
+menu.el.addEventListener('remove', event => {
+	menu.removeItem(event.detail);
+});
+
+form.el.addEventListener('add', event => {
+	menu.addItem(event.detail);
+	menu.onToggle('open');
+});

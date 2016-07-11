@@ -1,3 +1,4 @@
+import DefaultComponent from '../DefaultComponent.js';
 import './menu.css';
 import template from './menu.jade';
 
@@ -5,7 +6,7 @@ import template from './menu.jade';
  * @class Menu
  * Компонента "Меню"
  */
-export default class Menu {
+export default class Menu extends DefaultComponent {
 
 	/**
 	 * @constructor
@@ -14,14 +15,7 @@ export default class Menu {
 	 * @param {Object} options.data
 	 */
 	constructor(options) {
-		this.el = options.el;
-		this.data = options.data;
-
-		this.render();
-
-		this.list = this.el.querySelector('.menu__list');
-
-		this._initEvents();
+		super(options, template);
 	}
 
 	/**
@@ -41,11 +35,13 @@ export default class Menu {
 
 		switch (item.dataset.action) {
 		case 'toggle':
-			this.el.classList.toggle('menu_open');
+			if (this.data.items.length) {
+				this.onToggle();
+			}
 			break;
 
 		case 'remove':
-			this.removeItem(item);
+			this._onRemoveClick(item);
 			break;
 
 		case 'pick':
@@ -55,6 +51,17 @@ export default class Menu {
 		default:
 			break;
 		}
+	}
+
+	onToggle(open) {
+		if (open) {
+			this.el.classList.add('menu_open');
+		} else {
+			this.el.classList.toggle('menu_open');
+		}
+		this.trigger('toggle', {
+			open: this.el.classList.contains('menu_open'),
+		});
 	}
 
 	/**
@@ -69,37 +76,37 @@ export default class Menu {
 	}
 
 	/**
+	 * Добавляем пункт меню в данные
+	 * @param {Object} item
+	 */
+	addItem(item) {
+		this.data.items.push(item);
+		this.render();
+	}
+
+	/**
+	 * Удаляем пункт меню из данных
+	 * @param  {Object} removedItem
+	 */
+	removeItem(removedItem) {
+		this.data.items = this.data.items.filter((item, index) => index !== removedItem.index);
+
+		if (!this.data.items.length) {
+			this.onToggle();
+		}
+
+		this.render();
+	}
+
+	/**
 	* Удаления элемента меню
 	* @param {HTMLElement} item
 	*/
-	removeItem(item) {
+	_onRemoveClick(item) {
 		const index = parseInt(item.parentNode.dataset.index, 10);
 
 		this.trigger('remove', {
 			index,
 		});
-
-		this.list.removeChild(item.parentNode);
-	}
-
-	/**
-	* Сказать миру о случившемся
-	* @param {string} name тип события
-	* @param {Object} data объект события
-	*/
-	trigger(name, data) {
-		const menuEvent = new CustomEvent(name, {
-			detail: data,
-		});
-
-		this.el.dispatchEvent(menuEvent);
-		console.log(name, data);
-	}
-
-	/**
-	 * Рисуем меню
-	 */
-	render() {
-		this.el.innerHTML = template(this.data);
 	}
 }

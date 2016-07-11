@@ -1,3 +1,4 @@
+import DefaultComponent from '../DefaultComponent.js';
 import './form.css';
 import template from './form.jade';
 
@@ -5,20 +6,16 @@ import template from './form.jade';
  * @class Form
  * Компонента "Форма"
  */
-export default class Form {
+export default class Form extends DefaultComponent {
 
 	/**
 	 * @constructor
 	 * @param {Object} options
 	 * @param {HTMLElement} options.el
+	 * @param {Object} options.data
 	 */
 	constructor(options) {
-		this.el = options.el;
-		this.data = options.data;
-
-		this.render();
-
-		this._initEvents();
+		super(options, template);
 	}
 
 	/**
@@ -26,11 +23,8 @@ export default class Form {
 	*/
 	_initEvents() {
 		this.el.addEventListener('click', this._onClick.bind(this));
-
 		this.el.addEventListener('submit', this._onSubmit.bind(this));
-
 		this.el.addEventListener('focus', this._onFocusInput.bind(this), true);
-
 		this.el.addEventListener('blur', this._onBlurInput.bind(this), true);
 	}
 
@@ -75,15 +69,25 @@ export default class Form {
 
 		this.trigger('add', {
 			href: this.getField('href').value,
-			anchor: this.getField('anchor').value
+			anchor: this.getField('anchor').value,
 		});
 
-		this._hideAddBlock();
+		this.hideAddBlock();
 
-		event.target.reset();
+		this._onReset();
 	}
 
-	_hideAddBlock() {
+	_onReset() {
+		this.el.reset();
+		const elValue = this.el.querySelectorAll('.form__input-container--value');
+		elValue.forEach = [].forEach;
+
+		elValue.forEach(item => {
+			item.classList.remove('form__input-container--value');
+		});
+	}
+
+	hideAddBlock() {
 		this.el.querySelector('.form__add-block').style.display = 'none';
 		this.el.querySelector('.form__add-button').style.display = 'block';
 	}
@@ -93,42 +97,23 @@ export default class Form {
 	* @param {Event} event
 	*/
 	_onClick(event) {
-		event.preventDefault();
 		const item = event.target;
 
 		switch (item.dataset.action) {
 		case 'add':
+			event.preventDefault();
 			this.el.querySelector('.form__add-block').style.display = 'block';
 			item.style.display = 'none';
 			break;
 
 		case 'close':
-			this._hideAddBlock();
+			event.preventDefault();
+			this.hideAddBlock();
+			this._onReset();
 			break;
 
 		default:
 			break;
 		}
-	}
-
-	/**
-	* Сказать миру о случившемся
-	* @param {string} name тип события
-	* @param {Object} data объект события
-	*/
-	trigger(name, data) {
-		const formEvent = new CustomEvent(name, {
-			detail: data,
-		});
-
-		this.el.dispatchEvent(formEvent);
-		console.log(name, data);
-	}
-
-	/**
-	 * Рисуем форму
-	 */
-	render() {
-		this.el.innerHTML = template(this.data);
 	}
 }

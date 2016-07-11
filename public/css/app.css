@@ -1,5 +1,18 @@
 @import '_normalize.css';
 
+input:-webkit-autofill {
+	background-color: #fff !important;
+	background-image: none !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+    -webkit-transition-delay: 9999s;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -26,6 +39,7 @@ body {
 	margin: 20px;
 	background-color: #fff;
 	overflow: auto;
+	transition: all .3s;
 }
 
 .icon {
@@ -48,4 +62,11 @@ body {
 	text-align: center;
 	cursor: pointer;
 	transition: background-color .3s;
+}
+
+@media (max-width: 415px) {
+	.app {
+		width: 100%;
+		margin: 0;
+	}
 }

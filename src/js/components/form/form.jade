@@ -1,17 +1,18 @@
-.form__add-button.btn-default(data-action="add") Добавить
-.form__add-block
-	.form__input-container
-		label.form__input-label=hint.anchor
-		input.form__input-text(type="text", name="anchor" required="required")
-		div
-			hr.form__input-hr
-			hr.form__input-hr.form__input-hr--focus
-	.form__input-container
-		label.form__input-label=hint.href
-		input.form__input-text(type="url", name="href" required="required")
-		div
-			hr.form__input-hr
-			hr.form__input-hr.form__input-hr--focus
-	.form__buttons
-		.form__buttons-close.btn-default(data-action="close") Отменить
-		button.form__buttons-save.btn-default Сохранить
+form.form.js-form
+	.form__add-button.btn-default(data-action="add") Добавить
+	.form__add-block
+		.form__input-container
+			label.form__input-label=hint.anchor
+			input.form__input-text(type="text", name="anchor" required="required")
+			div
+				hr.form__input-hr
+				hr.form__input-hr.form__input-hr--focus
+		.form__input-container
+			label.form__input-label=hint.href
+			input.form__input-text(type="url", name="href" required="required")
+			div
+				hr.form__input-hr
+				hr.form__input-hr.form__input-hr--focus
+		.form__buttons
+			.form__buttons-close.btn-default(data-action="close") Отменить
+			button.form__buttons-save.btn-default Сохранить
