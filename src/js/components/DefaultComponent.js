@@ -11,29 +11,19 @@ export default class DefaultComponent {
 	 */
 	constructor(options, template) {
 		this.el = options.el;
-		this.data = options.data;
+		this.data = options.data || {};
 		this._template = template;
 
 		this._initEvents();
 	}
 
 	/**
-	* Сказать миру о случившемся
-	* @param {string} name тип события
-	* @param {Object} data объект события
-	*/
-	trigger(name, data) {
-		const event = new CustomEvent(name, {
-			detail: data,
-		});
-
-		this.el.dispatchEvent(event);
-	}
-
-	/**
 	 * Рисуем форму
 	 */
-	render() {
+	render(data) {
+		if (data) {
+			this.data = data;
+		}
 		this.el.innerHTML = this._template(this.data);
 	}
 }

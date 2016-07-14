@@ -1,4 +1,5 @@
 import DefaultComponent from '../DefaultComponent.js';
+import Trigger from '../../mixins/Trigger.js';
 import './form.css';
 import template from './form.jade';
 
@@ -6,7 +7,7 @@ import template from './form.jade';
  * @class Form
  * Компонента "Форма"
  */
-export default class Form extends DefaultComponent {
+export default class Form extends Trigger(DefaultComponent) {
 
 	/**
 	 * @constructor

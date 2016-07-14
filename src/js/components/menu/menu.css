@@ -1,25 +1,25 @@
 .menu__label {
-	background: url(/public/images/icon/ic_menu_black_24px.svg) 0 0 no-repeat;
+	background: url(/images/icon/ic_menu_black_24px.svg) 0 0 no-repeat;
 	left: 4px;
 }
 
 .menu__show {
-	background: url(/public/images/icon/ic_keyboard_arrow_down_black_24px.svg) 0 0 no-repeat;
+	background: url(/images/icon/ic_keyboard_arrow_down_black_24px.svg) 0 0 no-repeat;
 	right: 4px;
 }
 
 .menu__http {
-	background: url(/public/images/icon/ic_http_black_24px.svg) 0 0 no-repeat;
+	background: url(/images/icon/ic_http_black_24px.svg) 0 0 no-repeat;
 	left: 40px;
 }
 
 .menu__https {
-	background: url(/public/images/icon/ic_https_black_24px.svg) 0 0 no-repeat;
+	background: url(/images/icon/ic_https_black_24px.svg) 0 0 no-repeat;
 	left: 40px;
 }
 
 .menu__item-remove {
-	background: url(/public/images/icon/ic_delete_black_24px.svg) 0 0 no-repeat;
+	background: url(/images/icon/ic_delete_black_24px.svg) 0 0 no-repeat;
 	right: 4px;
 	display: none;
 	cursor: pointer;

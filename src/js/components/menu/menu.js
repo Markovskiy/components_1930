@@ -1,4 +1,5 @@
 import DefaultComponent from '../DefaultComponent.js';
+import Trigger from '../../mixins/Trigger.js';
 import './menu.css';
 import template from './menu.jade';
 
@@ -6,13 +7,12 @@ import template from './menu.jade';
  * @class Menu
  * Компонента "Меню"
  */
-export default class Menu extends DefaultComponent {
+export default class Menu extends Trigger(DefaultComponent) {
 
 	/**
 	 * @constructor
 	 * @param {Object} options
 	 * @param {HTMLElement} options.el
-	 * @param {Object} options.data
 	 */
 	constructor(options) {
 		super(options, template);
